@@ -1,12 +1,14 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Maze\Scripts\MazeLoader.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Maze\Scripts\Player.cs">
     <Files>
+      <File FileName="Assets\Maze\Scripts\Player.cs" Line="23" Column="1" />
       <File FileName="Assets\Maze\Scripts\HuntAndKillMazeAlgorithm.cs" Line="1" Column="1" />
       <File FileName="Assets\Maze\Scripts\MazeAlgorithm.cs" Line="1" Column="1" />
       <File FileName="Assets\Maze\Scripts\MazeCell.cs" Line="1" Column="1" />
-      <File FileName="Assets\Maze\Scripts\MazeLoader.cs" Line="41" Column="6" />
-      <File FileName="Assets\Maze\Scripts\ProceduralNumberGenerator.cs" Line="11" Column="30" />
+      <File FileName="Assets\Maze\Scripts\MazeLoader.cs" Line="1" Column="1" />
+      <File FileName="Assets\Maze\Scripts\ProceduralNumberGenerator.cs" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\Characters\FirstPersonCharacter\Scripts\FirstPersonController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

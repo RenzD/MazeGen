@@ -50,6 +50,7 @@
      <Compile Include="Assets\Maze\Scripts\MazeAlgorithm.cs" />
      <Compile Include="Assets\Maze\Scripts\MazeCell.cs" />
      <Compile Include="Assets\Maze\Scripts\MazeLoader.cs" />
+     <Compile Include="Assets\Maze\Scripts\Player.cs" />
      <Compile Include="Assets\Maze\Scripts\ProceduralNumberGenerator.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
