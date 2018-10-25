@@ -6,6 +6,7 @@ public class MazeLoader : MonoBehaviour {
 	public GameObject wall;
 	public GameObject wall2;
 	public GameObject floor;
+	public GameObject goal;
 	public float size = 2f;
 
 	private MazeCell[,] mazeCells;
@@ -16,6 +17,11 @@ public class MazeLoader : MonoBehaviour {
 
 		MazeAlgorithm ma = new HuntAndKillMazeAlgorithm (mazeCells);
 		ma.CreateMaze ();
+
+		int row = Random.Range (0, mazeRows);
+		int col = Random.Range (0, mazeColumns);
+		Vector3 temp = new Vector3(row * 6 ,0f, col * 6);
+		goal.transform.position = temp;
 	}
 	
 	// Update is called once per frame

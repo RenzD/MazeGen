@@ -46,6 +46,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Goal.cs" />
      <Compile Include="Assets\Maze\Scripts\HuntAndKillMazeAlgorithm.cs" />
      <Compile Include="Assets\Maze\Scripts\MazeAlgorithm.cs" />
      <Compile Include="Assets\Maze\Scripts\MazeCell.cs" />

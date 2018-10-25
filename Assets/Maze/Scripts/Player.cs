@@ -18,5 +18,10 @@ public class Player : MonoBehaviour {
 			toggle = !toggle;
 			gameObject.layer = toggle ? 0 : 9;
 		}
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Vector3 temp = new Vector3(0f,2.0f,0f);
+			gameObject.transform.position = temp;
+		}
+
 	}
 }
