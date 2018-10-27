@@ -1,36 +1,30 @@
 ﻿Shader "Custom/FogShader" {
 	Properties{
-		_Color("Main Color", Color) = (1,1,1)
-		_MainTex("Diffuse Color", 2D) = "white" {}
-		_RimColor("Rim Colour", Color) = (0,0,1)
-		_RimPower("Alpha Amount", Range(0.5,8)) = 3.5
-		_AlphaMultiplier("Alpha Multiplier" , Range(0,8)) = 2.0
+		_MainTex("Base (RGB)", 2D) = "white" {}
+		_bwBlend("Black & White blend", Range(0, 1)) = 0
 	}
 		SubShader{
-		Tags{ "Queue" = "Transparent" "RenderType" = "Opaque" }
-		CGPROGRAM
-#pragma surface surf Lambert alpha
+			Pass{
+				CGPROGRAM
+				#pragma vertex vert_img
+				#pragma fragment frag
 
-		struct Input {
-		float2 uv_MainTex;
-		float3 viewDir;
-	};
+				#include "UnityCG.cginc"
 
-	float4 _Color;
-	float4 _RimColour;
-	sampler2D _MainTex;
-	float _RimPower;
-	float _AlphaMultiplier;
+				uniform sampler2D _MainTex;
+				uniform float _bwBlend;
 
-	void surf(Input IN, inout SurfaceOutput o) {
-		o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb * _Color.rgb;
-		half VN = saturate(dot(normalize(IN.viewDir), o.Normal));
-		half rim = pow(1.0f - VN, _RimPower);
-		o.Alpha = o.Albedo.r - (rim * _AlphaMultiplier);
-		o.Albedo += rim * _RimColour;
+				float4 frag(v2f_img i) : COLOR{
+					float4 c = tex2D(_MainTex, i.uv);
+
+					float lum = c.r*.3 + c.g*.59 + c.b*.11;
+					float3 bw = float3(lum, lum, lum);
+
+					float4 result = c;
+					result.rgb = lerp(c.rgb, bw, _bwBlend);
+					return result;
+				}
+			ENDCG
+		}
 	}
-	ENDCG
-	}
-
-		FallBack "Diffuse"
 }

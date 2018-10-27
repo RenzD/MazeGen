@@ -6,15 +6,48 @@ public class CameraFog : MonoBehaviour
 {
 
     Camera cam;
-
-    public Shader shader;
+    const string camFogSh = "Custom/CameraFogShader";
+    const string custFogSh = "Custom/FogShader";
+    const string renDepth = "Custom/RenderDepth";
+    const string defFog = "Custom/DeferredFog";
+    const string basic = "COMP7051 Shader Demo/PhongWithSpecular";
+    const string whiteSh = "Custom/WhiteShader";
+    const string bwSh = "Custom/BWShader";
+    //public Shader shader = null;
     // Use this for initialization
+
+    public float intensity;
+    private Material material;
+
+    // Creates a private material used to the effect
     void Awake()
     {
-        cam = GetComponent<Camera>();
-        cam.RenderWithShader(shader, "FogCamera");
+        material = new Material(Shader.Find(custFogSh));
     }
 
+    // Postprocess the image
+    void OnRenderImage(RenderTexture source, RenderTexture destination)
+    {
+        if (intensity == 0)
+        {
+            Graphics.Blit(source, destination);
+            return;
+        }
+
+        material.SetFloat("_bwBlend", intensity);
+        Graphics.Blit(source, destination, material);
+    }
+
+
+    /*
+    void Start()
+    {
+    cam = GetComponent<Camera>();
+    Camera.main.SetReplacementShader(null, "Opaque");
+
+    Camera.main.SetReplacementShader(Shader.Find(whiteSh), "Overlay");
+    }
+    */
     // Update is called once per frame
     void Update()
     {
