@@ -9,6 +9,7 @@ public class MazeLoader : MonoBehaviour
     public GameObject wall;
     public GameObject wall2;
     public GameObject floor;
+    public GameObject dragon;
     public float size = 2f;
 
     //private NavMeshSurface surface;
@@ -48,7 +49,10 @@ public class MazeLoader : MonoBehaviour
                 mazeCells[r, c].floor.transform.Rotate(Vector3.right, 90f);
                 mazeCells[r, c].floor.transform.parent = maze.transform;
                 mazeCells[r, c].floor.AddComponent(typeof(NavMeshSourceTag));
-
+                if (r == mazeRows - 1 && c == mazeColumns - 1)
+                {
+                    Instantiate(dragon, new Vector3(r * size, -(size / 2f), c * size), Quaternion.identity);
+                }
 
                 if (c == 0)
                 {
