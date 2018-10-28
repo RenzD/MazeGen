@@ -5,8 +5,8 @@ using UnityEngine;
 public class DayNight : MonoBehaviour
 {
 
-    public float ambient = 1f;
-
+    public float dayAmbient = 1f;
+    public float nightAmbient = .5f;
     // Use this for initialization
     void Start()
     {
@@ -19,27 +19,17 @@ public class DayNight : MonoBehaviour
 
         Renderer rend = GetComponent<Renderer>();
         float ambientIntensity = rend.material.GetFloat("_AmbientLighIntensity");
-        //ambientIntensity = .25f;
-        //ambientIntensity = ambient;
-        //ambientIntensity += incr;
-        //if ((ambientIntensity > 1) || (ambientIntensity < 0))
-        //    incr = -incr;
         if (Input.GetKeyDown(KeyCode.E))
         {
-            if (ambientIntensity == 1f)
+            if (ambientIntensity == dayAmbient)
             {
-                rend.material.SetFloat("_AmbientLighIntensity", .25f);
+                rend.material.SetFloat("_AmbientLighIntensity", nightAmbient);
             }
             else
             {
-                rend.material.SetFloat("_AmbientLighIntensity", 1f);
+                rend.material.SetFloat("_AmbientLighIntensity", dayAmbient);
             }
         }
     }
-    /*
-    Vector4 dld = rend.material.GetVector("_DiffuseDirection");
-    dld.x += 2 * incr;
-    rend.material.SetVector("_DiffuseDirection", dld);
-    */
 }
 

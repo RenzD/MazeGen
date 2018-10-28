@@ -70,13 +70,16 @@ public class DragonWalk : MonoBehaviour, IDragonAction
             if (!IsDone())
             {
                 IsDoing = true;
-                if (walkTowards)
+                if (nav.isOnNavMesh)
                 {
-                    WalkTowards();
-                }
-                else
-                {
-                    WalkAway();
+                    if (walkTowards)
+                    {
+                        WalkTowards();
+                    }
+                    else
+                    {
+                        WalkAway();
+                    }
                 }
             }
             else
@@ -122,20 +125,8 @@ public class DragonWalk : MonoBehaviour, IDragonAction
         {
             nav.isStopped = false;
             StartMovementAnimation();
-            //walking = true;
+
         }
-        /*
-        //if (Vector3.Distance(transform.position, target.position))
-        //{
-        transform.position = Vector3.MoveTowards(transform.position, player.transform.position, movementSpeed * Time.deltaTime);
-
-        StartMovementAnimation();
-
-        Vector3 targetDir = player.transform.position - transform.position;
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed * Time.deltaTime, 0f);
-        transform.rotation = Quaternion.LookRotation(newDir);
-        //}
-        */
     }
 
     private void WalkAway()
@@ -147,21 +138,7 @@ public class DragonWalk : MonoBehaviour, IDragonAction
             nav.destination = targetPosition;
             nav.isStopped = false;
         }
-        /*
-        //if (Vector3.Distance(transform.position, target.position) < distance)
-        //{
-        transform.LookAt(target);
-        //transform.Rotate(0, 180, 0);
-        transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
-
-        Vector3 targetDir = player.transform.position - transform.position;
-        targetDir.x = -targetDir.x;
-        targetDir.z = -targetDir.z;
-        Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, rotationSpeed * Time.deltaTime, 0f);
-        transform.rotation = Quaternion.LookRotation(newDir);
-        */
         StartMovementAnimation();
-        //}
     }
 
     private void StartMovementAnimation()
