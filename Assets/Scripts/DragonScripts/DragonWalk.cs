@@ -30,8 +30,7 @@ public class DragonWalk : MonoBehaviour, IDragonAction
         get;
         set;
     }
-
-
+		
     // Use this for initialization
     void Start()
     {
@@ -97,11 +96,11 @@ public class DragonWalk : MonoBehaviour, IDragonAction
     {
         if (walkTowards)
         {
-            return Vector3.Distance(transform.position, player.transform.position) <= distance;
+            return Vector3.Distance(transform.position, target.position) <= distance;
         }
         else
         {
-            return Vector3.Distance(transform.position, player.transform.position) >= distance;
+            return Vector3.Distance(transform.position, target.position) >= distance;
 
         }
     }

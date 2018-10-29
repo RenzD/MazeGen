@@ -38,13 +38,13 @@ public class Dragon : BaseCreature
         anim = GetComponent<Animator>();
         nav = GetComponent<NavMeshAgent>();
 
-        player = GetPlayerToTrack();
+        player = GetTargetToTrack();
         actions = new List<IDragonAction>()
         {
             //gameObject.GetComponent<DragonFly>()
             
             gameObject.GetComponent<DragonWalk>()
-            , gameObject.GetComponent<BasicAttack>()
+            //, gameObject.GetComponent<BasicAttack>()
             //, gameObject.GetComponent<DragonRun>()
             //, gameObject.GetComponent<FlameAttack>()
 
@@ -137,7 +137,7 @@ public class Dragon : BaseCreature
         {
 
             actions.Add(gameObject.GetComponent<DragonWalk>());
-            actions.Add(gameObject.GetComponent<BasicAttack>());
+            //actions.Add(gameObject.GetComponent<BasicAttack>());
             // actions.Add(gameObject.GetComponent<DragonRun>());
             //actions.Add(gameObject.GetComponent<FlameAttack>());
 
@@ -294,15 +294,15 @@ public class Dragon : BaseCreature
         anim.SetBool(isWalkingStr, false);
     }
     */
-    GameObject GetPlayerToTrack()
+    GameObject GetTargetToTrack()
     {
-        GameObject player = null;
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        GameObject target = null;
+        GameObject[] players = GameObject.FindGameObjectsWithTag("Target");
         if (players.Length > 0)
         {
-            player = GameObject.FindGameObjectsWithTag("Player")[0];
+            target = GameObject.FindGameObjectsWithTag("Target")[0];
         }
-        return player;
+        return target;
     }
 
 

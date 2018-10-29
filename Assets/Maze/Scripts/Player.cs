@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.Characters.FirstPerson; 
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour {
 
@@ -22,17 +23,28 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.R)) {
-			
+		if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton7)) { 
 			toggle = !toggle;
 			gameObject.layer = toggle ? 0 : 9;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Home)) {
+		if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.JoystickButton6)) {
 			gameObject.transform.position = initPos;
 			fpc.m_MouseLook.m_CharacterTargetRot = Quaternion.Euler(0f, 0f, 0f); 
 			fpc.m_MouseLook.m_CameraTargetRot = Quaternion.Euler(0f, 0f, 0f);
 		}
+		if (Input.GetKeyDown (KeyCode.N)) {
+			//SceneManager.LoadScene (0);
+		}
+	}
 
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "Enemy") {
+			Debug.Log ("Eaten");
+			gameObject.transform.position = initPos;
+			fpc.m_MouseLook.m_CharacterTargetRot = Quaternion.Euler(0f, 0f, 0f); 
+			fpc.m_MouseLook.m_CameraTargetRot = Quaternion.Euler(0f, 0f, 0f);
+		}
 	}
 }
