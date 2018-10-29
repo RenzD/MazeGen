@@ -10,6 +10,7 @@ public class MazeLoader : MonoBehaviour
     public GameObject wall2;
     public GameObject floor;
     public GameObject dragon;
+	public GameObject goal;
     public float size = 2f;
 
     //private NavMeshSurface surface;
@@ -23,6 +24,11 @@ public class MazeLoader : MonoBehaviour
 
         MazeAlgorithm ma = new HuntAndKillMazeAlgorithm(mazeCells);
         ma.CreateMaze();
+
+		int row = Random.Range (1, mazeRows);
+		int col = Random.Range (1, mazeColumns);
+		Vector3 temp = new Vector3(row * 6 ,0f, col * 6);
+		goal.transform.position = temp;
 
         BakeNavMesh();
     }
