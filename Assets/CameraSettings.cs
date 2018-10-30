@@ -6,52 +6,47 @@ public class CameraSettings : MonoBehaviour
 {
 
     Camera cam;
-    const string camFogSh = "Custom/CameraFogShader";
-    const string custFogSh = "Custom/FogShader";
-    const string renDepth = "Custom/RenderDepth";
-    const string defFog = "Custom/DeferredFog";
-    const string basic = "COMP7051 Shader Demo/PhongWithSpecular";
-    const string whiteSh = "Custom/WhiteShader";
-    const string bwSh = "Custom/BWShader";
-    const string depGrSh = "Custom/DepthGrayScale";
-    //public Shader shader = null;
-    // Use this for initialization
-
+    private DeferredFogEffect fog;
     private Color skyBlue;
+    private Color defaultSkyColor;
     private Color fogColor;
-    // Creates a private material used to the effect
     void Start()
     {
         cam = GetComponent<Camera>();
-        skyBlue = cam.backgroundColor;
-        fogColor = skyBlue;
+        fog = GetComponent<DeferredFogEffect>();
+        defaultSkyColor = cam.backgroundColor;
+        fogColor = Color.gray;
+        RenderSettings.fogColor = fogColor;
     }
 
-
-    /*
-    void Start()
-    {
-    cam = GetComponent<Camera>();
-    Camera.main.SetReplacementShader(null, "Opaque");
-
-    Camera.main.SetReplacementShader(Shader.Find(whiteSh), "Overlay");
-    }
-    */
     // Update is called once per frame
     void Update()
     {
-        
+
         if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton11))
         {
             if (!cam.backgroundColor.Equals(Color.black))
             {
                 cam.backgroundColor = Color.black;
-                fogColor = Color.black;
+                fogColor = new Color(.075f, .075f, .075f, 1);
+                RenderSettings.fogColor = fogColor;
             }
             else
             {
-                cam.backgroundColor = skyBlue;
-                fogColor = Color.white;
+                cam.backgroundColor = defaultSkyColor;
+                fogColor = Color.gray;
+                RenderSettings.fogColor = fogColor;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton10))
+        {
+            if (!fog.enabled)
+            {
+                fog.enabled = true;
+            }
+            else
+            {
+                fog.enabled = false;
             }
         }
     }
