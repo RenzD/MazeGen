@@ -17,34 +17,14 @@ public class CameraSettings : MonoBehaviour
     //public Shader shader = null;
     // Use this for initialization
 
-    public float fogBlend;
-    private float fog;
-    private Material material;
-    private bool fogActive;
     private Color skyBlue;
     private Color fogColor;
     // Creates a private material used to the effect
     void Start()
     {
         cam = GetComponent<Camera>();
-        cam.depthTextureMode = DepthTextureMode.Depth;
-        material = new Material(Shader.Find(custFogSh));
-        fogActive = false;
-        fog = 1000f;
-        fogColor = Color.white;
         skyBlue = cam.backgroundColor;
-    }
-
-    // Postprocess the image
-    void OnRenderImage(RenderTexture source, RenderTexture destination)
-    {
-
-        Graphics.Blit(source, destination);
-
-        material.SetColor("_fogColor", fogColor);
-        material.SetFloat("_bwBlend", fog);
-        Graphics.Blit(source, destination, material);
-
+        fogColor = skyBlue;
     }
 
 
@@ -60,20 +40,8 @@ public class CameraSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton4))
-        {
-            if (!fogActive)
-            {
-                fogActive = true;
-                fog = fogBlend;
-            }
-            else
-            {
-                fogActive = false;
-                fog = 1000f;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5))
+        
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton11))
         {
             if (!cam.backgroundColor.Equals(Color.black))
             {

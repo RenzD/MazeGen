@@ -3,6 +3,7 @@
 Shader "Custom/AmbientShader" {
 	// Adapted from tutorials on Unity website
 	Properties{
+		_MainTex("Texture", 2D) = "white" {}
 		_AmbientLightColor("Ambient Light Color", Color) = (1,1,1,1)
 		_AmbientLighIntensity("Ambient Light Intensity", Range(0.0, 1.0)) = 1.0
 
