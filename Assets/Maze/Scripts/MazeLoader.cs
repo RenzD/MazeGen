@@ -10,11 +10,12 @@ public class MazeLoader : MonoBehaviour
     public GameObject wall2;
     public GameObject floor;
     public GameObject dragon;
-	public GameObject goal;
-	public GameObject target;
+    public GameObject goal;
+    public GameObject target;
     public float size = 2f;
+    public float targetTimer = 10f;
 
-	private float timeLeft = 5f;
+    private float timeLeft;
 
     //private NavMeshSurface surface;
     private MazeCell[,] mazeCells;
@@ -28,28 +29,31 @@ public class MazeLoader : MonoBehaviour
         MazeAlgorithm ma = new HuntAndKillMazeAlgorithm(mazeCells);
         ma.CreateMaze();
 
-		int row = Random.Range (1, mazeRows);
-		int col = Random.Range (1, mazeColumns);
-		Vector3 temp = new Vector3(row * 6 ,0f, col * 6);
-		goal.transform.position = temp;
-		dragon.transform.position = new Vector3 (mazeRows * size, dragon.transform.position.y , mazeColumns * size);
+        int row = Random.Range(1, mazeRows);
+        int col = Random.Range(1, mazeColumns);
+        Vector3 temp = new Vector3(row * 6, 0f, col * 6);
+        goal.transform.position = temp;
+        dragon.transform.position = new Vector3(mazeRows * size, dragon.transform.position.y, mazeColumns * size);
         BakeNavMesh();
+        timeLeft = targetTimer;
     }
 
     // Update is called once per frame
     void Update()
     {
-		timeLeft -= Time.deltaTime;
-		if (timeLeft < 0) {
-			int row = Random.Range (1, mazeRows);
-			int col = Random.Range (1, mazeColumns);
+        timeLeft -= Time.deltaTime;
+        if (timeLeft < 0)
+        {
+            int row = Random.Range(1, mazeRows);
+            int col = Random.Range(1, mazeColumns);
 
-			target.transform.position = new Vector3 (row * size, 0, col * size);
-			timeLeft = 5f;
-		}
-		if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.JoystickButton6)) {
-			dragon.transform.position = new Vector3 (mazeRows * size, dragon.transform.position.y , mazeColumns * size);
-		}
+            target.transform.position = new Vector3(row * size, 0, col * size);
+            timeLeft = targetTimer;
+        }
+        if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.JoystickButton6))
+        {
+            dragon.transform.position = new Vector3(mazeRows * size, dragon.transform.position.y, mazeColumns * size);
+        }
     }
 
     private void InitializeMaze()
@@ -69,7 +73,7 @@ public class MazeLoader : MonoBehaviour
                 mazeCells[r, c].floor.transform.Rotate(Vector3.right, 90f);
                 mazeCells[r, c].floor.transform.parent = maze.transform;
                 mazeCells[r, c].floor.AddComponent(typeof(NavMeshSourceTag));
-                
+
 
                 if (c == 0)
                 {

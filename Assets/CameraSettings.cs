@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraFog : MonoBehaviour
+public class CameraSettings : MonoBehaviour
 {
 
     Camera cam;
@@ -60,7 +60,7 @@ public class CameraFog : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton4))
+        if (Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.JoystickButton4))
         {
             if (!fogActive)
             {
@@ -73,7 +73,7 @@ public class CameraFog : MonoBehaviour
                 fog = 1000f;
             }
         }
-		if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5))
         {
             if (!cam.backgroundColor.Equals(Color.black))
             {
