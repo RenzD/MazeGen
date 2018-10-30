@@ -23,12 +23,12 @@ public class Player : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton7)) { 
+		if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton12)) { 
 			toggle = !toggle;
 			gameObject.layer = toggle ? 0 : 9;
 		}
 
-		if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.JoystickButton6)) {
+		if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.JoystickButton13)) {
 			gameObject.transform.position = initPos;
 			fpc.m_MouseLook.m_CharacterTargetRot = Quaternion.Euler(0f, 0f, 0f); 
 			fpc.m_MouseLook.m_CameraTargetRot = Quaternion.Euler(0f, 0f, 0f);

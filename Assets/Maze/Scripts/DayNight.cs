@@ -19,7 +19,7 @@ public class DayNight : MonoBehaviour
 
         Renderer rend = GetComponent<Renderer>();
         float ambientIntensity = rend.material.GetFloat("_AmbientLighIntensity");
-		if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton5))
+		if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.JoystickButton11))
         {
             if (ambientIntensity == dayAmbient)
             {

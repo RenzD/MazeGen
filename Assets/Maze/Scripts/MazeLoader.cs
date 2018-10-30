@@ -50,7 +50,7 @@ public class MazeLoader : MonoBehaviour
             target.transform.position = new Vector3(row * size, 0, col * size);
             timeLeft = targetTimer;
         }
-        if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.JoystickButton6))
+        if (Input.GetKeyDown(KeyCode.Home) || Input.GetKeyDown(KeyCode.JoystickButton13))
         {
             dragon.transform.position = new Vector3(mazeRows * size, dragon.transform.position.y, mazeColumns * size);
         }
